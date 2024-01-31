@@ -1,0 +1,23 @@
+{
+  "name": "monitojs",
+  "version": "1.0.0",
+  "description": "un conjunto muy grande de cosas chiquitas",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/casanovamanuel/bejsproject.git"
+  },
+  "author": "Manuel Casanova",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/casanovamanuel/bejsproject/issues"
+  },
+  "homepage": "https://github.com/casanovamanuel/bejsproject#readme",
+  "type": "module",
+  "dependencies": {
+    "buffer": "^6.0.3"
+  }
+}
