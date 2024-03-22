@@ -5,7 +5,7 @@ const checkProduct = (product)=>{
     valid = valid && ( typeof product.title !== 'undefined' )
     valid = valid && ( typeof product.description !== 'undefined' )
     valid = valid && ( typeof product.price !== 'undefined' )
-    valid = valid && ( typeof product.thumbnail !== 'undefined' )
+    //valid = valid && ( typeof product.thumbnail !== 'undefined' )
     valid = valid && ( typeof product.code !== 'undefined' )
     valid = valid && ( typeof product.stock !== 'undefined' )
     return valid;
@@ -17,7 +17,9 @@ const FilePersistenceEngine = {
     encoding : "utf8",
     all: async function(){
         let contenidocrudo = await fs.promises.readFile(this.path,this.encoding);
+        
         let contenido = JSON.parse( contenidocrudo) 
+        console.log(contenido);
         return contenido;
     },
     clean: async function(){
@@ -29,7 +31,7 @@ const FilePersistenceEngine = {
         contenido.push(element)
         await fs.promises.writeFile(this.path, JSON.stringify(contenido))
     },
-    find: async function(productId){
+    find: async function(productId){//pasar a findByCode
         let contenido = await this.all()
         
         const res = contenido.find((elem)=>elem.code === productId)
@@ -59,7 +61,8 @@ const ProductManager = {
         return this.nextId
     },
     getProducts: async function () {
-        return await this.products.all()
+        const res = await this.products.all();
+        return res
     },
     getProductById: async function (searchedCode) {
         const identified = await this.products.find(searchedCode)

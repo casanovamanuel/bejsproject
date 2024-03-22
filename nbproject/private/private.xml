@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/panda/Codigo/bejsproject/app.js</file>
-            <file>file:/home/panda/Codigo/bejsproject/sandbox/objeto1.js</file>
-            <file>file:/home/panda/Codigo/bejsproject/sandbox/object_funcs.js</file>
-            <file>file:/home/panda/Codigo/bejsproject/sandbox/fs.js</file>
-            <file>file:/home/panda/Codigo/bejsproject/sandbox/promise.js</file>
+            <file>file:/home/panda/Codigo/bejsproject/src/routes/product.router.js</file>
+            <file>file:/home/panda/Codigo/bejsproject/src/util/dirname.js</file>
+            <file>file:/home/panda/Codigo/bejsproject/main.js</file>
+            <file>file:/home/panda/Codigo/bejsproject/src/app.js</file>
+            <file>file:/home/panda/Codigo/bejsproject/src/manager/ProductManagerFile.js</file>
+            <file>file:/home/panda/Codigo/bejsproject/src/util/multer.js</file>
             <file>file:/home/panda/Codigo/bejsproject/package.json</file>
+            <file>file:/home/panda/Codigo/bejsproject/db.json</file>
             <file>file:/home/panda/Codigo/bejsproject/src/model/user.model.js</file>
         </group>
     </open-files>
