@@ -45,6 +45,7 @@ const ProductManager = {
     addProduct: async function (product) {
         if (!checkProduct(product)) {
             console.log("producto invalido")
+            throw new Error("producto invalido");
             return 0;
         }
         //console.log("products find : ", product.code, this.products.find(product.code));
@@ -52,6 +53,7 @@ const ProductManager = {
         console.log("products find : ", product.code, elementoExistente)
         if (elementoExistente != undefined) {
             console.log("El producto ya existe")
+            throw new Error("El producto ya existe")
             return 0;
         }
         let identifiedProduct = {...product, id: this.nextId}
@@ -67,7 +69,7 @@ const ProductManager = {
     getProductById: async function (searchedCode) {
         const identified = await this.products.find(searchedCode)
         if (identified == undefined) {
-            console.log("no encontre el codigo: ", searchedCode);
+            //console.log("no encontre el codigo: ", searchedCode);
             return -1;
         } else {
             return identified;

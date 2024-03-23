@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import fs from 'fs'
 import ProductManager from '../manager/ProductManagerFile.js'
 import uploader from '../util/multer.js'
 
@@ -23,9 +24,18 @@ productRouter.get('/:id', (req,res) => {
 productRouter.post('/', uploader.array('thumbnails',4), (req,res) => {
     let product = req.body;
     product.thumbnail = req.files
+    manager.addProduct(product).then( ()=>{
+        res.json({message:"recibido!!!"})
+    }).catch((err) => {
+        console.log(err);
+        req.files.forEach( (elem) => {
+            fs.unlinkSync(elem.path)
+            
+        } )
+        res.send(err.message)
+    })
     
     
-    res.json({message:"recibido!!!"})
     
 } )
 
