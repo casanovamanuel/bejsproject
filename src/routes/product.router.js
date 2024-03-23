@@ -27,12 +27,11 @@ productRouter.post('/', uploader.array('thumbnails',4), (req,res) => {
     manager.addProduct(product).then( ()=>{
         res.json({message:"recibido!!!"})
     }).catch((err) => {
-        console.log(err);
+        console.log(err.message);
         req.files.forEach( (elem) => {
             fs.unlinkSync(elem.path)
-            
         } )
-        res.send(err.message)
+        res.json({message: err.message})
     })
     
     

@@ -19,7 +19,7 @@ const FilePersistenceEngine = {
         let contenidocrudo = await fs.promises.readFile(this.path,this.encoding);
         
         let contenido = JSON.parse( contenidocrudo) 
-        console.log(contenido);
+        //console.log(contenido);
         return contenido;
     },
     clean: async function(){
@@ -44,21 +44,21 @@ const ProductManager = {
     nextId: 1,
     addProduct: async function (product) {
         if (!checkProduct(product)) {
-            console.log("producto invalido")
+            //console.log("producto invalido")
             throw new Error("producto invalido");
             return 0;
         }
         //console.log("products find : ", product.code, this.products.find(product.code));
         const elementoExistente = await this.products.find(product.code)
-        console.log("products find : ", product.code, elementoExistente)
+        //console.log("products find : ", product.code, elementoExistente)
         if (elementoExistente != undefined) {
-            console.log("El producto ya existe")
+            //console.log("El producto ya existe")
             throw new Error("El producto ya existe")
             return 0;
         }
         let identifiedProduct = {...product, id: this.nextId}
         this.nextId++
-        console.log("identificado ",identifiedProduct)
+        //console.log("identificado ",identifiedProduct)
         await this.products.push(identifiedProduct)
         return this.nextId
     },
