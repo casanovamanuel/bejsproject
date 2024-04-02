@@ -1,9 +1,7 @@
-import { createServer } from 'http'
+let frutas = [{nombre:"lala1"},{nombre:"lala2"},{nombre:"lala3"},{nombre:"lala4"}]
 
-const server = createServer((inboundRequest, outputResponse)=>{
-            console.log(inboundRequest)
-            outputResponse.end("entre")
-});
+let elem = frutas[2]
 
-server.listen(8080, ()=>{ console.log("escuchando"); })
+frutas.splice(2,1)
 
+console.log(elem, frutas);

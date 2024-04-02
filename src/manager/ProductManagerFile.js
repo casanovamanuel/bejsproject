@@ -14,6 +14,7 @@ const checkProduct = (product)=>{
 // title, description, price, thumbnail, code, stock
 const FilePersistenceEngine = {
     path: "./db.json",
+    
     encoding : "utf8",
     all: async function(){
         let contenidocrudo = await fs.promises.readFile(this.path,this.encoding);
@@ -25,8 +26,10 @@ const FilePersistenceEngine = {
     clean: async function(){
         let contenido = []
         await fs.promises.writeFile(this.path, JSON.stringify(contenido))
+        
     },
     push: async function(element){
+        
         let contenido = await this.all()
         contenido.push(element)
         await fs.promises.writeFile(this.path, JSON.stringify(contenido))
@@ -36,32 +39,60 @@ const FilePersistenceEngine = {
         
         const res = contenido.find((elem)=>elem.code === productId)
         return res
+    },
+    update: async function(element){
+        let contenido = await this.all()
+        const index = contenido.findIndex((elem) => elem.code === element.code)
+        if (index === -1) throw new Error("invalid action, not found")  
+        contenido[index] = element
+        await fs.promises.writeFile(this.path, JSON.stringify(contenido))
+    },
+    delete: async function(code){
+        let contenido = await this.all()
+        const index = contenido.findIndex((elem) => elem.code === code)
+        if (index === -1) throw new Error("invalid action, not found")  
+        const retValue = contenido[index] 
+        contenido.splice(index,1)
+        
+        await fs.promises.writeFile(this.path, JSON.stringify(contenido))
+        return retValue
+    },
+    nextId: async function (){
+        let contenido = await this.all()
+        let max = 0
+        contenido.forEach((elem)=>{ if(elem.id>max){max = elem.id} })
+        return max + 1;
     }
 }
 
 const ProductManager = {
     products: FilePersistenceEngine,
-    nextId: 1,
     addProduct: async function (product) {
         if (!checkProduct(product)) {
-            //console.log("producto invalido")
             throw new Error("producto invalido");
             return 0;
         }
-        //console.log("products find : ", product.code, this.products.find(product.code));
         const elementoExistente = await this.products.find(product.code)
-        //console.log("products find : ", product.code, elementoExistente)
         if (elementoExistente != undefined) {
-            //console.log("El producto ya existe")
             throw new Error("El producto ya existe")
             return 0;
         }
-        let identifiedProduct = {...product, id: this.nextId}
-        this.nextId++
-        //console.log("identificado ",identifiedProduct)
+        const nextId = await this.products.nextId()
+        let identifiedProduct = {...product, id: nextId}
+        
         await this.products.push(identifiedProduct)
-        return this.nextId
+        return nextId
     },
+    updateProduct: async function(product){
+        if (!checkProduct(product)) {
+            throw new Error("producto invalido");
+        }
+        const elementoExistente = await this.products.find(product.code)
+        if (elementoExistente == undefined) {
+            throw new Error("El producto no existe")
+        }
+        this.products.update(product)
+    } ,
     getProducts: async function () {
         const res = await this.products.all();
         return res
@@ -69,15 +100,22 @@ const ProductManager = {
     getProductById: async function (searchedCode) {
         const identified = await this.products.find(searchedCode)
         if (identified == undefined) {
-            //console.log("no encontre el codigo: ", searchedCode);
-            return -1;
+            throw new Error("no existe el producto")
         } else {
             return identified;
         }
+    },
+    deleteProduct: async function(code){
+        return this.products.delete(code)
     },
     clean : async function(){
         await this.products.clean()
     }
 }
+//el motor de persistencia deberia manejarse por id y manager por code, 
+//hay mejora necesaria, 
+//tengo que implementar findBy donde le pueda pasar un objeto con el filtro 
+// y que me busque entonces usar this.productos.findBy({code : elCodigo }) 
+
 
 export default ProductManager;
