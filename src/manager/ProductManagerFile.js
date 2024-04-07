@@ -13,7 +13,7 @@ const checkProduct = (product)=>{
 
 // title, description, price, thumbnail, code, stock
 const FilePersistenceEngine = {
-    path: "./db.json",
+    path: "./db_product.json",
     
     encoding : "utf8",
     all: async function(){

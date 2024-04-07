@@ -2,6 +2,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import productRouter from './routes/product.router.js'
+import cartRouter from './routes/cart.router.js'
 import viewsRouter from './routes/views.router.js'
 import userRouter from './routes/user.router.js'
 import handlebars from 'express-handlebars'
@@ -24,6 +25,7 @@ expressService.use(express.urlencoded({extended:true}))
 expressService.use('/static',express.static('public'))
 
 expressService.use('/api/product', productRouter)
+expressService.use('/api/cart', cartRouter)
 expressService.use('/', viewsRouter)
 expressService.use('/user', userRouter)
 //expressService.use('/api/cart', productRouter)  //@TODO: esto falta!!!!
