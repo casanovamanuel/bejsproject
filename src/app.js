@@ -6,29 +6,42 @@ import cartRouter from './routes/cart.router.js'
 import viewsRouter from './routes/views.router.js'
 import userRouter from './routes/user.router.js'
 import handlebars from 'express-handlebars'
+import { Server } from 'socket.io'
 
-const __filename = fileURLToPath( 'file:///home/panda/Codigo/bejsproject/src/app.js' ) 
-// a netbeans no le gusta import.meta.url nu se porque .... la gente de apache lo esta solucionando
+
+
+const __filename = fileURLToPath(import.meta.url)
 
 const __dirname = dirname(__filename)
 
 const port = 8080
-const expressService = express();  
+const expressService = express();
 
 expressService.engine('handlebars', handlebars.engine())
-expressService.set('views', __dirname+'/views')
+expressService.set('views', __dirname + '/views')
 expressService.set('view engine', 'handlebars')
 
 
 expressService.use(express.json());
-expressService.use(express.urlencoded({extended:true}))
-expressService.use('/static',express.static('public'))
+expressService.use(express.urlencoded({ extended: true }))
+expressService.use('/static', express.static('public'))
 
 expressService.use('/api/product', productRouter)
 expressService.use('/api/cart', cartRouter)
-expressService.use('/', viewsRouter)
 expressService.use('/user', userRouter)
-//expressService.use('/api/cart', productRouter)  //@TODO: esto falta!!!!
+expressService.use('/', viewsRouter)
 
-expressService.listen(8080, ()=>{console.log("servidor funcionando");} );
+const server = expressService.listen(8080, () => { console.log("servidor funcionando"); });
+//const listener = expressService.listen(8090, ()=>{console.log("escuchando");} );
 
+const io = new Server(server)
+io.on("connection", (socket) => {
+
+    socket.on("checkin", (data) => {
+        console.log(data);
+    })
+
+})
+
+
+expressService.set('socketServer', io)

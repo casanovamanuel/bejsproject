@@ -1,9 +1,17 @@
-h1 {color: white}
-body {background-color: #323232}
-p {color: #909090}
+h1 {
+  color: white
+}
+
+body {
+  background-color: #323232
+}
+
+p {
+  color: #909090
+}
 
 
-a:link  {
+a:link {
   background-color: #2020f0;
   color: white;
   padding: 14px 25px;
@@ -12,6 +20,7 @@ a:link  {
   display: inline-block;
   border-radius: 10px;
 }
+
 a:visited {
   background-color: #1010a0;
   color: white;
@@ -23,8 +32,8 @@ a:visited {
 }
 
 .form-input {
-    color: white;
-    padding: 14px 10px;
+  color: white;
+  padding: 14px 10px;
 }
 
 .button {
@@ -38,13 +47,17 @@ a:visited {
 }
 
 td {
-    color: #d0d0d0;
+  color: #d0d0d0;
 }
 
 h2 {
-    color: #e0e020;
+  color: #e0e020;
 }
 
 li {
-    color: #d0d0d0;
+  color: #d0d0d0;
+}
+
+div {
+  color: darkseagreen;
 }
