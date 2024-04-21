@@ -1,88 +1,94 @@
 import { Router } from 'express';
 import fs from 'fs'
-import ProductManager from '../manager/ProductManagerFile.js'
 import uploader from '../util/multer.js'
+import productModel from '../model/product.model.js';
 
 
 
 const productRouter = Router()
-const manager = ProductManager;
+const checkUsuario = () => { }
+
+
 
 productRouter.get('/', (req, res) => {
-    manager.getProducts().then((retValue) => {
+    console.log(productModel.prototype);
+    productModel.find()
+        .then((list) => {
 
-
-        res.json(retValue)
-    }).catch((err) => { console.log(err) });
-
+            res.status(200).send({ result: "success", payload: list })
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send({ result: "error", payload: {} })
+        })
 })
 
 productRouter.get('/:id', (req, res) => {
     const id = req.params.id
-
-    manager.getProductById(id)
-        .then((retValue) => {
-            res.json(retValue)
+    productModel.findOne({ _id: id })
+        .then((elemento) => {
+            res.status(200).send({ result: "success", payload: elemento })
         })
-        .catch((err) => console.log(err))
+        .catch((error) => {
+            res.status(500).send({ result: "error", payload: {} })
+        })
 
 })
 
-productRouter.post('/', uploader.array('thumbnails', 4), (req, res) => {
+productRouter.post('/', uploader.array('thumbnail', 4), async (req, res) => {
     let product = req.body;
-    product.thumbnail = (req.files === undefined) ? [] : req.files;
-    manager.addProduct(product).then(() => {
-        const ss = req.app.get("socketServer")
-        ss.sockets.emit("refreshProduts", {})
-        res.json({ message: "recibido!!!" })
-    }).catch((err) => {
-        req.files.forEach((elem) => {
-            fs.unlinkSync(elem.path)
+    product.thumbnail = (req.files === undefined) ? [] : req.files.map((file) => file.path);
+    productModel.create(product)
+        .then(() => { res.send({ message: "recibido coorectamente" }) })
+        .catch((error) => {
+            req.files.forEach((thumbnailFile) => {
+                fs.unlink(thumbnailFile.path, (err => { if (err) console.log(err) }))
+            })
+            let errorMessages = []
+            for (const property in error.errors) {
+
+                errorMessages.push(property + " => " + error.errors[property].message)
+            }
+            res.status(400).send(errorMessages)
         })
-        res.json({ message: err.message })
-    })
+
+    //return newProduct
 })
 
-productRouter.put('/', uploader.array('thumbnails', 4), (req, res) => {
+productRouter.put('/:id', uploader.array('thumbnail', 4), (req, res) => {
     let product = req.body;
-
-    product.thumbnail = (req.files === undefined) ? [] : req.files;
-
-    let oldProduct = {}
-    manager.getProductById(product.code)
-        .then((res) => { oldProduct = res })
-        .catch((err) => console.log(err))
-
-    manager.updateProduct(product).then(() => {
-        oldProduct.thumbnail.forEach((elem) => {
-            fs.unlinkSync(elem.path)
+    const productId = req.params.id
+    product.thumbnail = (req.files === undefined) ? [] : req.files.map((file) => file.path);
+    productModel.findByIdAndUpdate({ _id: productId }, product, { runValidators: true })
+        .then((oldProduct) => {
+            oldProduct.thumbnail.map((path) => fs.unlink(path, (err) => { if (err) console.log(err) }))
+            res.status(201).send({ message: "modificado correctamente" })
         })
-        const ss = req.app.get("socketServer")
-        ss.sockets.emit("refreshProduts", {})
-        res.json({ message: "recibido!!!" })
-    }).catch((err) => {
-        req.files.forEach((elem) => {
-            fs.unlinkSync(elem.path)
+        .catch((error) => {
+            product.thumbnail.map((path) => fs.unlink(path, (err) => { if (err) console.log(err) }))
+            let errorMessages = []
+            for (const property in error.errors) {
+                errorMessages.push(property + " => " + error.errors[property].message)
+            }
+            res.status(400).send(errorMessages)
         })
-        res.json({ message: err.message })
-    })
+
 })
 
 productRouter.delete('/:id', (req, res) => {
-    const id = req.params.id
-    manager.deleteProduct(id)
-        .then((ret) => {
-            ret.thumbnail.forEach((elem) => {
-                fs.unlinkSync(elem.path)
-            })
-            const ss = req.app.get("socketServer")
-            ss.sockets.emit("refreshProduts", {})
-            res.json({ message: "producto borrado" })
+
+    const query = { _id: req.params.id }
+    const doomedProduct = productModel.findOne(query);
+    productModel.deleteOne(query)
+        .then((elem) => {
+            doomedProduct.thumbnail.map((elem) => { fs.unlink(path, (err) => { if (err) console.log(err) }) })
+            res.status(202).send({ message: "elemento borrado" })
         })
-        .catch((err) => {
-            console.log(err);
-            res.json({ message: err.message })
+        .catch((error) => {
+
         })
+
+
 })
 
 export default productRouter;

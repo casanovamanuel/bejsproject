@@ -97,7 +97,7 @@ const ProductManager = {
         const res = await this.products.all();
         return res
     },
-    getProductById: async function (searchedCode) {
+    getProductByCode: async function (searchedCode) {
         const identified = await this.products.find(searchedCode)
         if (identified == undefined) {
             throw new Error("no existe el producto")

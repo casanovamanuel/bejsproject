@@ -7,14 +7,21 @@ import viewsRouter from './routes/views.router.js'
 import userRouter from './routes/user.router.js'
 import handlebars from 'express-handlebars'
 import { Server } from 'socket.io'
-
-
+import mongoose from 'mongoose';
 
 const __filename = fileURLToPath(import.meta.url)
 
 const __dirname = dirname(__filename)
 
 const port = 8080
+
+// mongoose config
+mongoose.set('debug', true);
+mongoose.pluralize(null); // si hay cosas molestas esta es una
+mongoose.connect("mongodb://localhost:27017/ecommerce")
+
+
+// express setings 
 const expressService = express();
 
 expressService.engine('handlebars', handlebars.engine())
@@ -44,4 +51,5 @@ io.on("connection", (socket) => {
 })
 
 
-expressService.set('socketServer', io)
+expressService.set('socketServer', io) // ayuda!!!
+
