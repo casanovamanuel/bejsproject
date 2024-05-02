@@ -1,14 +1,15 @@
-<div>
-    {{#if users.length  }}
-        <ul >
-            {{#each users}}
-            <li>
-                Nombre: {{ this.nombre }} - {{ this.email }}
-            </li>
-            {{/each}}
-        </ul>
-    {{else}}
-        <p>No hay usuarios</p>
-    {{/if}}
-    <a class="button" href="/user/register">Registre un nuevo usuario</a>
+<div class="container w-50  border mt-4 pb-4 rounded">
+
+    <h1 class="text-center">Hola, no te conozco</h1>
+    <div class="container text-center">
+        <div>
+            <p>Si ya tienes cuenta</p>
+            <a class="btn btn-primary" href="/user/login">Ingresa</a>
+        </div>
+        <hr />
+        <div>
+            <p>Si no tienes cuenta</p>
+            <a class="btn btn-primary" href="/user/register">Registrate</a>
+        </div>
+    </div>
 </div>

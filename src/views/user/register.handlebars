@@ -1,21 +1,33 @@
-<div>
+<div class="container mt-3 pt-3 border rounded mx-auto">
+    <form method="POST">
+        <div class="mb-3">
+            <label for="nombre">Nombre</label>
+            <input class="form-control" type="text" name="nombre" id="nombre" />
+        </div>
+        <div class="mb-3">
+            <label for="apellido">Apellido</label>
+            <input class="form-control" type="text" name="apellido" id="apellido" />
+        </div>
+        <div class="mb-3">
+            <label for="email">Correo Electronico</label>
+            <input class="form-control" type="email" name="email" id="email" />
+        </div>
 
-    <form action="/user/" method="POST">
-        <div class="form-input">
-            <label>Nombre</label>
-            <input type="text" name="nombre" id="nombre" />
+        <div class="mb-3">
+            <label for="password">Contraseña</label>
+            <input class="form-control" type="password" name="password" id="password" />
         </div>
-        <div class="form-input">
-            <label>email</label>
-            <input type="email" name="email" id="email" />
-        </div>
-        <div class="form-input">
-            <label>Password</label>
-            <input type="password" name="password" id="password" />
-        </div>
-        <div class="form-input">
-            <input class="button" type="submit" value="Agregar">
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Agregar">
         </div>
     </form>
-
+    {{#if errorList }}
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            {{#each errorList }}
+            <li> {{ this }}</li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
 </div>

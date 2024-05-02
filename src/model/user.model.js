@@ -1,13 +1,30 @@
 import mongoose from 'mongoose'
 
-const usuariosCollection = 'usuarios'
+const userCollection = 'usuarios'
 
-const usuarioSchema = {
-    nombre: String,
-    apellido: String,
-    email: String
+const userSchema = {
+    nombre: {
+        type: String,
+        required: [true, "el campo esta vacio"],
+        minLength: [1, "el campo esta vacio"]
+    },
+    apellido: {
+        type: String,
+        required: [true, "el campo esta vacio"],
+        minLength: [1, "el campo esta vacio"]
+    },
+    email: {
+        type: String,
+        required: [true, "el campo esta vacio"],
+        minLength: [1, "el campo esta vacio"]
+    },
+    password: {
+        type: String,
+        required: [true, "el campo esta vacio"],
+        minLength: [1, "el campo esta vacio"]
+    }
 }
 
-export const usuarioModel = mongoose.model(usuariosCollection, usuarioSchema)
+export const userModel = mongoose.model(userCollection, userSchema)
 
 

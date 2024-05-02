@@ -61,3 +61,8 @@ li {
 div {
   color: darkseagreen;
 }
+
+.input-oscuro {
+  background-color: #323232;
+  color: #e0e0e0;
+}
