@@ -1,41 +1,41 @@
+//express
 import express from 'express';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+// direcciones internas
+import baseDirName from './dirname.js'
+
+//routers
 import productRouter from './routes/product.router.js'
 import cartRouter from './routes/cart.router.js'
 import viewsRouter from './routes/views.router.js'
 import userRouter from './routes/user.router.js'
+
+// servicios
 import handlebars from 'express-handlebars'
 import { Server } from 'socket.io'
-import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
-import sessionRouter from './routes/session.router.js';
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
-import initializePassport from './config/passport.config.js';
+import initializePassport from './config/passport.config.js'; 4
+import { entorno } from "./config/config.js";
+import mongoose from 'mongoose';
 
 
-const __filename = fileURLToPath(import.meta.url)
 
-const __dirname = dirname(__filename)
 
-const port = 8080
-const mongoConnectionUrl = "mongodb://localhost:27017/ecommerce"
+
 // mongoose config
-mongoose.set('debug', true);
-mongoose.pluralize(null); // si hay cosas molestas esta es una .... y no anda
-mongoose.connect(mongoConnectionUrl)
+//mongoose.set('debug', true);
+//mongoose.pluralize(null); // si hay cosas molestas esta es una .... y no anda
+mongoose.connect(entorno.mongoUrl)
 
 
-// express setings 
+// configurando express 
 const expressService = express();
 
 expressService.engine('handlebars', handlebars.engine())
-expressService.set('views', __dirname + '/views')
+expressService.set('views', baseDirName + '/views')
 expressService.set('view engine', 'handlebars')
-
-
 expressService.use(express.json());
 expressService.use(express.urlencoded({ extended: true }))
 expressService.use('/static', express.static('public'))
@@ -43,10 +43,10 @@ expressService.use(cookieParser())
 expressService.use(session(
     {
         store: MongoStore.create({
-            mongoUrl: "mongodb://localhost:27017/ecommerce",
-            ttl: 2 * 60 // 2 minutos
+            mongoUrl: entorno.mongoUrl,
+            ttl: 10 * 60 // 10 minutos
         }),
-        secret: 'misecretitomuysecreto',
+        secret: entorno.mongooseSessionSecret,
         resave: false,
         saveUninitialized: false
     }
@@ -57,15 +57,14 @@ initializePassport()
 expressService.use(passport.initialize())
 expressService.use(passport.session())
 
-
+// definicion de rutas
 expressService.use('/api/product', productRouter)
 expressService.use('/api/cart', cartRouter)
 expressService.use('/user', userRouter)
-expressService.use('/session', sessionRouter)
-expressService.use('/', viewsRouter)
+expressService.use('/', viewsRouter) // default - puede que sea necesario hacer desaparecer
 
-const server = expressService.listen(8080, () => { console.log("servidor funcionando"); });
-//const listener = expressService.listen(8090, ()=>{console.log("escuchando");} );
+
+const server = expressService.listen(entorno.port, () => { console.log("servidor funcionando en: " + entorno.port); });
 
 const io = new Server(server)
 io.on("connection", (socket) => {
