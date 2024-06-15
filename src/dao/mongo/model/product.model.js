@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const productCollection = 'articulos'
+const productCollection = 'productos'
 
 
 const productSchema = {
@@ -25,7 +25,10 @@ const productSchema = {
         min: [0, "cantidad invalida"],
         required: [true, "el campo esta vacio"]
     },
-    thumbnail: Array
+    type: {
+        type: mongoose.Types.ObjectId,
+        ref: "ProductTypes"
+    }
 }
 
 const productModel = mongoose.model(productCollection, productSchema)
