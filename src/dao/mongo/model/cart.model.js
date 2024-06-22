@@ -16,7 +16,8 @@ const cartSchema = {
             },
             ammount: Number,
             price: Number
-        }]
+        }],
+        default: []
     },
     status: {
         type: String,

@@ -2,73 +2,72 @@ import DAOService from "../dao/factory.js"
 
 
 const cartManager = DAOService.services.cartManager
+const productManager = DAOService.services.productManager
 
-const userManager = DAOService.services.userManager
+const userValidation = DAOService.services.userValidation
+const userAtuthorized = DAOService.services.userAtuthorized
 
 const cartController = {
-    createCart: async function (req, res) {
-        const userMail = 'casanova_manuel@yahoo.com'
-        const user = await userManager.getUserByEmail(userMail)
-        const cart = { userId: user._id, products: [] }
-        cartManager.createCart(cart)
-            .then((data) => {
-                res.status(201).send({ status: "success", cart: data })
-            })
-            .catch((error) => {
-                console.log(error);
-                res.status(500).send({ status: "failed", error: "no se pudo crear el carrito" })
-            })
 
-    },
     getUserCart: async function (req, res) {
-        const { userId } = req.body
 
-        cartManager.getUserCart(userId)
-            .then((data) => {
-                res.status(200).send({ status: "success", cart: data })
-            })
-            .catch((error) => {
-                console.log(error);
-                res.status(500).send({ status: "failed", error: "no se pudo obtener el carrito" })
-            })
+        const userId = req.user.id
+
+        const response = await cartManager.getUserCart(userId)
+        if (response.status === "failed") {
+            console.log(response.error);
+            res.status(500).send({ status: "failed", error: "no se pudo obtener el carrito" })
+            return false
+        }
+        return res.status(200).send({ status: "success", cart: response.cart })
+
 
     },
     addProduct: async function (req, res) {
-        const { cartId, product, ammount } = req.body
 
-        cartManager.addProduct(cartId, product, ammount)
-            .then((data) => {
-                res.status(201).send({ status: "success", cart: data })
-            })
-            .catch((error) => {
-                console.log(error);
-                res.status(500).send({ status: "failed", error: "no se pudo agregar el producto" })
-            })
+        const { productId, ammount } = req.body
+        if (!productId || !ammount) return res.status(400).send({ status: "failed", messages: ["faltan datos"] })
+        if (!Number(ammount)) return res.status(400).send({ status: "failed", messages: ["la cantidad debe ser un numero"] })
+        if (ammount < 1) return res.status(400).send({ status: "failed", messages: ["la cantidad debe ser mayor a 0"] })
+
+
+        const responseProduct = await productManager.getProductById(productId)
+        if (responseProduct.status === "failed") return res.status(400).send(responseProduct)
+
+        const response = await cartManager.addProduct(req.user, productId, ammount)
+        if (response.status === "failed") return res.status(400).send(response)
+        res.status(201).send(response)
+
     },
     removeProduct: async function (req, res) {
-        const { cartId, product } = req.body
+        const user = req.user
+        const response = await cartManager.getUserCart(user.id)
 
-        cartManager.removeProduct(cartId, product)
-            .then((data) => {
-                res.status(201).send({ status: "success", cart: data })
-            })
-            .catch((error) => {
-                console.log(error);
-                res.status(500).send({ status: "failed", error: "no se pudo quitar el producto" })
-            })
-    },
-    checkoutCart: async function (req, res) {//// este va a ser el dolor de cabeza
-        const { cartId } = req.body
+        if (response.status === "failed") return res.status(400).send(response)
+        console.log(req.body);
+        const { productId } = req.body
+        const responseProduct = await productManager.getProductById(productId)
+        if (responseProduct.status === "failed") return res.status(400).send(responseProduct)
 
-        cartManager.checkoutCart(cartId)
-            .then((data) => {
-                res.status(201).send({ status: "success", cart: data })
-            })
-            .catch((error) => {
-                console.log(error);
-                res.status(500).send({ status: "failed", error: "no se pudo agregar el producto" })
-            })
+        const removedResponse = await cartManager.removeProduct(user.id, productId)
+        if (removedResponse.status === "failed") return res.status(400).send(removedResponse)
+        res.status(200).send(removedResponse)
+
     },
+    checkoutCart: async function (req, res) {
+
+        const user = req.user
+        const responseCart = cartManager.getUserCart(user.id)
+        if (responseCart.status === "failed") return res.status(400).send(responseCart)
+
+        const cartId = responseCart.cart.id
+        const response = await cartManager.checkoutCart(cartId)
+        if (response.status === "failed") return res.status(400).send(response)
+        return res.status(200).send(response)
+    },
+    userValidation,
+    userAtuthorized
+    // necesito mejorar esto urgente
 }
 
 export default cartController

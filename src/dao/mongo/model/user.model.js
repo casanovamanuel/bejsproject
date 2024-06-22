@@ -15,12 +15,13 @@ const userSchema = {
     password: {
         type: String
     },
-    role: {
+    roles: [{
         type: String,
-        enum: ["user"],
+        enum: ["user"], // esto deberia ser una lista en la DB
         defaults: "user"
-    }
+    }]
 }
+
 
 const userModel = mongoose.model(userCollection, userSchema)
 export default userModel

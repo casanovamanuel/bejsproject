@@ -5,7 +5,7 @@ import baseDirName from './dirname.js'
 
 //routers
 import productRouter from './routes/product.router.js'
-// import cartRouter from './routes/cart.router.js'
+import cartRouter from './routes/cart.router.js'
 import viewsRouter from './routes/views.router.js'
 import userRouter from './routes/user.router.js'
 
@@ -40,7 +40,7 @@ expressService.use(cookieParser())
 
 // definicion de rutas
 expressService.use('/api/product', productRouter)
-// expressService.use('/api/cart', cartRouter)
+expressService.use('/api/cart', cartRouter)
 expressService.use('/api/user', userRouter)
 expressService.use('/', viewsRouter) // default - puede que sea necesario hacer desaparecer
 

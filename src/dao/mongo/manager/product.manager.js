@@ -5,10 +5,10 @@ const productManager = {
     getAll: async function () {
         try {
             const products = await productModel.find()
-            return products
+            return { status: "success", products: products }
         } catch (error) { // eto no ta bien
             console.log(error);
-            return null
+            return { status: "failed", messages: ["no se pudo obtener los productos"] }
         }
     },
 
@@ -16,10 +16,10 @@ const productManager = {
 
         try {
             const product = await productModel.findById(productId)
-            return product
+            return { status: "success", product: product }
         } catch (error) { // eto no ta bien
             console.log(error);
-            return null
+            return { status: "failed", messages: ["no se pudo obtener el producto"] }
         }
 
     },
@@ -28,10 +28,10 @@ const productManager = {
 
         try {
             const products = await productModel.findById({ type: productType })
-            return products
-        } catch (error) { // eto no ta bien
+            return { status: "success", products: products }
+        } catch (error) {
             console.log(error);
-            return null
+            return { status: "failed", messages: ["no se pudo obtener los productos"] }
         }
     }
 
