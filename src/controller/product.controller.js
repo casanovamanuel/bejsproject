@@ -1,25 +1,20 @@
 import DAOService from "../dao/factory.js"
 
-let productManager = DAOService.services.productManager
+const productManager = DAOService.services.productManager
 
 const productController = {
     getProducts: async function (req, res) {
-        const allProducts = await productManager.getAll()
-        res.status(200).send({ status: "proceso exitoso", products: allProducts })
+        const response = await productManager.getAll()
+        if (response.status === "failed") return res.status(400).send(response)
+        res.status(200).send(response)
     },
     getProductById: async function (req, res) {
         const productId = req.params.id
-        productManager.getProductById(productId)
-            .then((data) => {
-                res.status(200).send({ status: "success", product: data })
-            })
-            .catch((error) => {
-                res.status(400).send({ status: "failure", causes: error })
-            })
+        const response = await productManager.getProductById(productId)
+        if (response.status === "failed") return res.status(400).send(response)
+        res.status(200).send(response)
     },
-    // getProductsByType: async function (req, res) {
 
-    // }
 
 }
 

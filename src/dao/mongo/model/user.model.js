@@ -1,7 +1,10 @@
 import mongoose from 'mongoose'
 
 const userCollection = 'usuarios'
-
+const documentSchema = {
+    name: String,
+    reference: String
+}
 const userSchema = {
     nombre: {
         type: String
@@ -10,16 +13,26 @@ const userSchema = {
         type: String
     },
     email: {
-        type: String
+        type: String,
+        unique: true,
+        required: [true, "el campo esta vacio"]
     },
     password: {
         type: String
     },
     roles: [{
         type: String,
-        enum: ["user"], // esto deberia ser una lista en la DB
+        enum: ["user", "admin", "premium"],
         defaults: "user"
+    }],
+    last_connection: {
+        type: Date
+    },
+    documents: [{
+        type: documentSchema
     }]
+
+
 }
 
 

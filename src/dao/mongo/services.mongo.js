@@ -1,12 +1,14 @@
 import userManager from "./manager/user.manager.js"
 import productManager from "./manager/product.manager.js"
 import cartManager from "./manager/cart.manager.js";
+import ticketManager from "./manager/ticket.manager.js";
 import encryptionUtil from "../../util/encryption.util.js";
 import { entorno } from "../../config/config.js";
 
 import mongoose from "mongoose"
 
-mongoose.set('debug', true);
+// mongoose.set('debug', true);
+
 mongoose.connect(entorno.mongoUrl)
 
 const userValidation = async (req, res, next) => {
@@ -41,7 +43,7 @@ const userAtuthorized = (role) => async (req, res, next) => {
     const response = await userManager.getUserByEmail(req.user.email)
     const user = response.user
     if (user.roles.includes(role)) { return next() }
-    res.status(403).send({ status: "failed", messages: ["No tiene el permiso que corresponde"] })
+    res.status(403).send({ status: "failed", messages: ["No puede realizar esta accion"] })
     return false
 }
 
@@ -49,6 +51,7 @@ export const services = {
     userManager,
     productManager,
     cartManager,
+    ticketManager,
     userValidation,
     userAtuthorized
 }

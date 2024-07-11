@@ -1,0 +1,3 @@
+{"level":"warn","message":"intento de login con credenciales invalidas","user":"casanova_manuel@yahoo.com"}
+{"level":"warn"}
+{"level":"warn","message":"explote aca encryptionUtil.compare is not a function","stack":"TypeError: encryptionUtil.compare is not a function\n    at Object.loginUser (file:///home/panda/Codigo/bejsproject/src/dao/mongo/manager/user.manager.js:86:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async login (file:///home/panda/Codigo/bejsproject/src/controller/user.controller.js:14:26)"}

@@ -4,9 +4,6 @@ import DAOService from "../dao/factory.js"
 const cartManager = DAOService.services.cartManager
 const productManager = DAOService.services.productManager
 
-const userValidation = DAOService.services.userValidation
-const userAtuthorized = DAOService.services.userAtuthorized
-
 const cartController = {
 
     getUserCart: async function (req, res) {
@@ -14,12 +11,8 @@ const cartController = {
         const userId = req.user.id
 
         const response = await cartManager.getUserCart(userId)
-        if (response.status === "failed") {
-            console.log(response.error);
-            res.status(500).send({ status: "failed", error: "no se pudo obtener el carrito" })
-            return false
-        }
-        return res.status(200).send({ status: "success", cart: response.cart })
+        if (response.status === "failed") return res.status(500).send(response)
+        return res.status(200).send(response)
 
 
     },
@@ -44,7 +37,7 @@ const cartController = {
         const response = await cartManager.getUserCart(user.id)
 
         if (response.status === "failed") return res.status(400).send(response)
-        console.log(req.body);
+
         const { productId } = req.body
         const responseProduct = await productManager.getProductById(productId)
         if (responseProduct.status === "failed") return res.status(400).send(responseProduct)
@@ -64,10 +57,7 @@ const cartController = {
         const response = await cartManager.checkoutCart(cartId)
         if (response.status === "failed") return res.status(400).send(response)
         return res.status(200).send(response)
-    },
-    userValidation,
-    userAtuthorized
-    // necesito mejorar esto urgente
+    }
 }
 
 export default cartController

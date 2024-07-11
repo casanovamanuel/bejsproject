@@ -25,7 +25,7 @@ const productSchema = {
         min: [0, "cantidad invalida"],
         required: [true, "el campo esta vacio"]
     },
-    type: {
+    category: {
         type: mongoose.Types.ObjectId,
         ref: "ProductTypes"
     }

@@ -1,5 +1,6 @@
 import userModel from "../model/user.model.js";
 import encryptionUtil from "../../../util/encryption.util.js";
+import logUtil from "../../../util/logger.util.js";
 
 
 const isEmail = (email) => {
@@ -8,7 +9,7 @@ const isEmail = (email) => {
 }
 const isPasswordFormat = (password) => {
     const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,30}$/
-    return mailRegExp.test(password)
+    return passwordRegExp.test(password)
 }
 
 const checkUser = (user) => {
@@ -29,7 +30,7 @@ const userManager = {
             if (!user) return { status: "failed", messages: ["no existe el usuario"] }
             return { status: "success", user: user }
         } catch (error) {
-            console.log(error);
+            logUtil.logger.warn(error);
             return { status: "failed", messages: ["no existe el usuario"] }
         }
     },
@@ -48,6 +49,7 @@ const userManager = {
             const createdUser = await userModel.create(user)
             return { status: "success", user: createdUser }
         } catch (error) {
+            logUtil.logger.warn(error);
             return { status: "failed", messages: ["no se pudo registrar el usuario"] }
         }
 
@@ -57,19 +59,43 @@ const userManager = {
         if (errors.length() > 0) {
             return { status: "failed", messages: errors }
         }
-        if (! await this.userExists(user)) return { status: "failed", messages: ["no existe el usuario"] }
-        const updatedUser = await userModel.findByIdAndUpdate({ _id: user.id }, { $set: user }, { new: true })
-        return { status: "success", user: updatedUser }
+        try {
+            if (! await this.userExists(user)) return { status: "failed", messages: ["no existe el usuario"] }
+            const updatedUser = await userModel.findByIdAndUpdate({ _id: user.id }, { $set: user }, { new: true })
+            return { status: "success", user: updatedUser }
+        } catch (error) {
+            logUtil.logger.warn(error);
+            return { status: "failed", messages: ["no se pudo actualizar el usuario"] }
+        }
     },
 
-    userExists: async function (user) { //hay que mejorar esto
+    userExists: async function (user) {
         try {
             return await userModel.countDocuments({ email: user.email }) > 0
         } catch (error) {
-            console.log(error);
+            logUtil.logger.warn(error);
             return false
         }
 
+    },
+    loginUser: async function (user) {
+
+        try {
+            const response = await this.getUserByEmail(user.email)
+            if (response.status === "failed") return response
+            if (encryptionUtil.validate(user.password, response.user.password)) {
+                user = response.user
+                user.last_connection = (new Date()).toLocaleString()
+                await userModel.findByIdAndUpdate({ _id: user._id }, { $set: user })
+                const validToken = encryptionUtil.generateToken(user.email)
+                return { status: "success", token: validToken }
+            } else {
+                return { status: "failed", messages: ["credenciales invalidas"] }
+            }
+        } catch (error) {
+            logUtil.logger.warn("explote aca", error);
+            return { status: "failed", messages: ["credenciales invalidas"] }
+        }
     }
 
 }

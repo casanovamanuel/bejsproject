@@ -1,6 +1,6 @@
 import passport from "passport";
 import local from "passport-local"
-import encryptionUtil from "../util/encryption.util.js";
+import encryptionUtil from "../src/util/encryption.util.js";
 import { userModel } from "../model/user.model.js";
 
 const LocalStrategy = local.Strategy

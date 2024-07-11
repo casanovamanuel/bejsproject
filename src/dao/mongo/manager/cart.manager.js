@@ -1,5 +1,6 @@
 import cartModel from "../model/cart.model.js";
 import productModel from "../model/product.model.js";
+import logUtil from "../../../util/logger.util.js";
 
 const cartManager = {
 
@@ -16,7 +17,7 @@ const cartManager = {
                 return { status: "success", cart: foundCart }
             }
         } catch (error) {
-            console.log(error);
+            logUtil.logger.warn(error);
             return { status: "failed", messages: ["no se pudo obtener el carrito"] }
         }
     },
@@ -25,10 +26,8 @@ const cartManager = {
         try {
 
             const response = await this.getUserCart(user.id)
-            if (response.status === "failed") {
-                console.log(response.error);
-                return { status: "failed", messages: ["no se pudo obtener el carrito"] }
-            }
+
+            if (response.status === "failed") return response
             const cart = response.cart
             const product = await productModel.findById(productId)
             if (!product) return { status: "failed", messages: ["el producto no existe"] }
@@ -47,12 +46,12 @@ const cartManager = {
             await cartModel.updateOne({ _id: cart.id }, { $set: { products: cart.products } });
             return { status: "success", cart: cart }
         } catch (error) {
-            console.log(error);
+            logUtil.logger.warn(error);
             return { status: "failed", messages: ["no se pudo agregar el producto"] }
         }
     },
     removeProduct: async function (userId, productId) {
-        console.log("removeProduct", userId, productId)
+
 
         try {
 
@@ -65,7 +64,7 @@ const cartManager = {
             await cartModel.updateOne({ _id: cart.id }, { $set: { products: cart.products } })
             return { status: "success", cart: cart }
         } catch (error) {
-            console.log(error);
+            logUtil.logger.warn(error);
             return { status: "failed", messages: ["no se pudo remover el producto"] }
         }
     },
@@ -92,7 +91,7 @@ const cartManager = {
             return { status: "success", cart: cart, value: value }
 
         } catch (error) {
-            console.log(error);
+            logUtil.logger.warn(error);
             return { status: "failed", messages: ["no se pudo realizar la compra"] }
         }
     }
