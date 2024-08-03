@@ -9,11 +9,11 @@ const cartManager = {
             let cart = await cartModel.findOne({ userId: userId, status: "pending" })
 
             if (cart) {
-                const foundCart = { userId: cart.userId, products: cart.products, status: cart.status }
+                const foundCart = { id: cart._id, userId: cart.userId, products: cart.products, status: cart.status }
                 return { status: "success", cart: foundCart }
             } else {
                 const newCart = await cartModel.create({ userId: userId, products: [] })
-                const foundCart = { userId: newCart.userId, products: newCart.products, status: newCart.status }
+                const foundCart = { id: newCart._id, userId: newCart.userId, products: newCart.products, status: newCart.status }
                 return { status: "success", cart: foundCart }
             }
         } catch (error) {
@@ -44,6 +44,7 @@ const cartManager = {
             if (!existed) { cart.products.push({ productId: product._id, price: product.price, ammount: ammount }) }
             if (finalAmmount > product.stock) return { status: "failed", messages: ["no hay suficiente stock"] }
             await cartModel.updateOne({ _id: cart.id }, { $set: { products: cart.products } });
+            //logUtil.logger.info("cart: ", cart.id, "products: ", cart.products)
             return { status: "success", cart: cart }
         } catch (error) {
             logUtil.logger.warn(error);
@@ -68,9 +69,8 @@ const cartManager = {
             return { status: "failed", messages: ["no se pudo remover el producto"] }
         }
     },
-    checkoutCart: async function (cartId) {
+    checkoutCart: async function (cart) {
         try {
-            const cart = await cartModel.findById(cartId)
             let isPurchasable = true
             cart.products.forEach(async (elem) => {
                 const product = await productModel.findById(elem.productId)
@@ -83,15 +83,15 @@ const cartManager = {
             }
             cart.status = "approved"
             cart.products.forEach(async (elem) => {
-                productModel.updateOne({ _id: elem.productId }, { $inc: { quantity: -elem.ammount, "stock": 1 } })
-            })
-            await cartModel.updateOne({ _id: cartId }, { $set: { status: cart.status } })
-            const value = cart.products.reduce((acc, elem) => acc + (elem.price * elem.ammount), 0)
 
-            return { status: "success", cart: cart, value: value }
+                await productModel.updateOne({ _id: elem.productId }, { $inc: { stock: -elem.ammount } })
+            })
+            await cartModel.updateOne({ _id: cart.id }, { $set: { status: cart.status } })
+
+            return { status: "success", cart: cart }
 
         } catch (error) {
-            logUtil.logger.warn(error);
+            logUtil.logger.warn("ete errrorrrrrr", JSON.stringify(error));
             return { status: "failed", messages: ["no se pudo realizar la compra"] }
         }
     }

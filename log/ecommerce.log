@@ -1,3 +1,147 @@
 {"level":"warn","message":"intento de login con credenciales invalidas","user":"casanova_manuel@yahoo.com"}
 {"level":"warn"}
 {"level":"warn","message":"explote aca encryptionUtil.compare is not a function","stack":"TypeError: encryptionUtil.compare is not a function\n    at Object.loginUser (file:///home/panda/Codigo/bejsproject/src/dao/mongo/manager/user.manager.js:86:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async login (file:///home/panda/Codigo/bejsproject/src/controller/user.controller.js:14:26)"}
+{"kind":"date","level":"warn","message":"explote aca Cast to date failed for value \"13/7/2024, 9:22:39\" (type string) at path \"last_connection\"","path":"last_connection","reason":{"actual":false,"code":"ERR_ASSERTION","expected":true,"generatedMessage":true,"operator":"=="},"stack":"CastError: Cast to date failed for value \"13/7/2024, 9:22:39\" (type string) at path \"last_connection\"\n    at SchemaDate.cast (/home/panda/Codigo/bejsproject/node_modules/mongoose/lib/schema/date.js:376:11)\n    at SchemaType.applySetters (/home/panda/Codigo/bejsproject/node_modules/mongoose/lib/schemaType.js:1221:12)\n    at SchemaDate.castForQuery (/home/panda/Codigo/bejsproject/node_modules/mongoose/lib/schema/date.js:411:19)\n    at castUpdateVal (/home/panda/Codigo/bejsproject/node_modules/mongoose/lib/helpers/query/castUpdate.js:573:19)\n    at walkUpdatePath (/home/panda/Codigo/bejsproject/node_modules/mongoose/lib/helpers/query/castUpdate.js:378:24)\n    at castUpdate (/home/panda/Codigo/bejsproject/node_modules/mongoose/lib/helpers/query/castUpdate.js:111:7)\n    at model.Query._castUpdate (/home/panda/Codigo/bejsproject/node_modules/mongoose/lib/query.js:4579:10)\n    at model.Query._findOneAndUpdate (/home/panda/Codigo/bejsproject/node_modules/mongoose/lib/query.js:3290:23)\n    at model.Query.exec (/home/panda/Codigo/bejsproject/node_modules/mongoose/lib/query.js:4322:80)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","stringValue":"\"13/7/2024, 9:22:39\"","value":"13/7/2024, 9:22:39","valueType":"string"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn","message":"ete errrorrrrrr Cannot read properties of undefined (reading 'products')","stack":"TypeError: Cannot read properties of undefined (reading 'products')\n    at Object.checkoutCart (file:///home/panda/Codigo/bejsproject/src/dao/mongo/manager/cart.manager.js:75:18)\n    at checkoutCart (file:///home/panda/Codigo/bejsproject/src/controller/cart.controller.js:58:44)\n    at Layer.handle [as handle_request] (/home/panda/Codigo/bejsproject/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/panda/Codigo/bejsproject/node_modules/express/lib/router/route.js:149:13)\n    at file:///home/panda/Codigo/bejsproject/src/dao/mongo/services.mongo.js:45:45\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+{"level":"warn","message":"ete errrorrrrrr Cannot read properties of undefined (reading 'products')","stack":"TypeError: Cannot read properties of undefined (reading 'products')\n    at Object.checkoutCart (file:///home/panda/Codigo/bejsproject/src/dao/mongo/manager/cart.manager.js:75:18)\n    at checkoutCart (file:///home/panda/Codigo/bejsproject/src/controller/cart.controller.js:58:44)\n    at Layer.handle [as handle_request] (/home/panda/Codigo/bejsproject/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/panda/Codigo/bejsproject/node_modules/express/lib/router/route.js:149:13)\n    at file:///home/panda/Codigo/bejsproject/src/dao/mongo/services.mongo.js:45:45\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+{"level":"warn","message":"ete errrorrrrrr Cannot read properties of undefined (reading 'products')","stack":"TypeError: Cannot read properties of undefined (reading 'products')\n    at Object.checkoutCart (file:///home/panda/Codigo/bejsproject/src/dao/mongo/manager/cart.manager.js:75:18)\n    at checkoutCart (file:///home/panda/Codigo/bejsproject/src/controller/cart.controller.js:58:44)\n    at Layer.handle [as handle_request] (/home/panda/Codigo/bejsproject/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/panda/Codigo/bejsproject/node_modules/express/lib/router/route.js:149:13)\n    at file:///home/panda/Codigo/bejsproject/src/dao/mongo/services.mongo.js:45:45\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn"}
+{"_message":"facturas validation failed","errors":{"cart":{"kind":"UUID","message":"Cast to UUID failed for value \"new ObjectId('66940b3a4548afc77e1c371e')\" (type ObjectId) at path \"cart\" because of \"TypeError\"","name":"CastError","path":"cart","reason":{},"stringValue":"\"new ObjectId('66940b3a4548afc77e1c371e')\"","value":"66940b3a4548afc77e1c371e","valueType":"ObjectId"}},"level":"warn","message":"facturas validation failed: cart: Cast to UUID failed for value \"new ObjectId('66940b3a4548afc77e1c371e')\" (type ObjectId) at path \"cart\" because of \"TypeError\"","name":"ValidationError"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn","message":"ete errrorrrrrr"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {\"errors\":{\"cartId\":{\"stringValue\":\"\\\"new ObjectId('66940df7b16cbed3ed88fa1c')\\\"\",\"valueType\":\"ObjectId\",\"kind\":\"UUID\",\"value\":\"66940df7b16cbed3ed88fa1c\",\"path\":\"cartId\",\"reason\":{},\"name\":\"CastError\",\"message\":\"Cast to UUID failed for value \\\"new ObjectId('66940df7b16cbed3ed88fa1c')\\\" (type ObjectId) at path \\\"cartId\\\" because of \\\"TypeError\\\"\"}},\"_message\":\"facturas validation failed\",\"name\":\"ValidationError\",\"message\":\"facturas validation failed: cartId: Cast to UUID failed for value \\\"new ObjectId('66940df7b16cbed3ed88fa1c')\\\" (type ObjectId) at path \\\"cartId\\\" because of \\\"TypeError\\\"\"}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {\"errors\":{\"cartId\":{\"stringValue\":\"\\\"90\\\"\",\"valueType\":\"number\",\"kind\":\"UUID\",\"value\":90,\"path\":\"cartId\",\"reason\":{},\"name\":\"CastError\",\"message\":\"Cast to UUID failed for value \\\"90\\\" (type number) at path \\\"cartId\\\" because of \\\"TypeError\\\"\"}},\"_message\":\"facturas validation failed\",\"name\":\"ValidationError\",\"message\":\"facturas validation failed: cartId: Cast to UUID failed for value \\\"90\\\" (type number) at path \\\"cartId\\\" because of \\\"TypeError\\\"\"}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {\"errors\":{\"cartId\":{\"stringValue\":\"\\\"new ObjectId('669fa33a42f7a3bc0a8daeb5')\\\"\",\"valueType\":\"ObjectId\",\"kind\":\"UUID\",\"value\":\"669fa33a42f7a3bc0a8daeb5\",\"path\":\"cartId\",\"reason\":{},\"name\":\"CastError\",\"message\":\"Cast to UUID failed for value \\\"new ObjectId('669fa33a42f7a3bc0a8daeb5')\\\" (type ObjectId) at path \\\"cartId\\\" because of \\\"TypeError\\\"\"}},\"_message\":\"facturas validation failed\",\"name\":\"ValidationError\",\"message\":\"facturas validation failed: cartId: Cast to UUID failed for value \\\"new ObjectId('669fa33a42f7a3bc0a8daeb5')\\\" (type ObjectId) at path \\\"cartId\\\" because of \\\"TypeError\\\"\"}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fa9ba31c2112070aae2f9\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669faa4cdbd914118aa05612\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fac20cab089f3585a013a\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669facde875aea62d0cc7be0\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"error","message":"ete cartId feo: \"669facde875aea62d0cc7be0\""}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fad1f3e23cd2fd90cd9ee\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"error","message":"669fad1f3e23cd2fd90cd9ee"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fadb8e1059308c3c4cbc3\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"error","message":0}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fae3578d23ecc7a805c24\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"error","message":"ete ticket feo: {\"cartId\":\"669fae3578d23ecc7a805c24\",\"ammount\":0}"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fae707e565bedfb978dfc\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"warn","message":"ete cosita fea: {\"errors\":{\"cartId\":{\"stringValue\":\"\\\"new ObjectId('669fae707e565bedfb978dfc')\\\"\",\"valueType\":\"ObjectId\",\"kind\":\"UUID\",\"value\":\"669fae707e565bedfb978dfc\",\"path\":\"cartId\",\"reason\":{},\"name\":\"CastError\",\"message\":\"Cast to UUID failed for value \\\"new ObjectId('669fae707e565bedfb978dfc')\\\" (type ObjectId) at path \\\"cartId\\\" because of \\\"TypeError\\\"\"}},\"_message\":\"facturas validation failed\",\"name\":\"ValidationError\",\"message\":\"facturas validation failed: cartId: Cast to UUID failed for value \\\"new ObjectId('669fae707e565bedfb978dfc')\\\" (type ObjectId) at path \\\"cartId\\\" because of \\\"TypeError\\\"\"}"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669faee63d9a34f0333fc694\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669faf1facac6292e05372a5\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669faf494397cc7e371c884e\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"expiredAt":"2024-07-23T13:26:42.000Z","level":"error","message":"jwt expired","name":"TokenExpiredError"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fb074afcda939c72e2529\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fb13b253587b5e8cc403a\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"warn","message":"ete cosita fea: {}"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fb15ab9611758b8b2c267\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"error"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fb17d22ece560b959ef3d\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"error","message":{"error":{}}}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fb1d7c118781739a189fa\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"error","message":"ete cartId feo: \"669fb1d7c118781739a189fa\""}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fb261c3dc6a0912fe13a9\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"cartId":"669fb261c3dc6a0912fe13a9","level":"error","message":"cartId"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fb2c142a5c7583efb3ee6\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"cartId":"669fb2c142a5c7583efb3ee6","comparacion":true,"level":"error","message":"cartId"}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fb315f15545c7cea733d0\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"cartId":"669fb315f15545c7cea733d0","comparacion":true,"level":"error","message":"cartId"}
+{"level":"error","message":{"error":{"_message":"facturas validation failed","errors":{"cartId":{"kind":"UUID","message":"Cast to UUID failed for value \"new ObjectId('669fb315f15545c7cea733d0')\" (type ObjectId) at path \"cartId\" because of \"TypeError\"","name":"CastError","path":"cartId","reason":{},"stringValue":"\"new ObjectId('669fb315f15545c7cea733d0')\"","value":"669fb315f15545c7cea733d0","valueType":"ObjectId"}},"message":"facturas validation failed: cartId: Cast to UUID failed for value \"new ObjectId('669fb315f15545c7cea733d0')\" (type ObjectId) at path \"cartId\" because of \"TypeError\"","name":"ValidationError"}}}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fb4ba3dff02241700fb62\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"error","message":"ete baseCart feo: {\"_id\":\"669fb4ba3dff02241700fb62\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\",\"__v\":0}"}
+{"level":"error","message":{"error":{}}}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fb4e488f78c6bc5035cfd\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"error","message":{"error":{"_message":"facturas validation failed","errors":{"cartId":{"kind":"UUID","message":"Cast to UUID failed for value \"new ObjectId('669fb4e488f78c6bc5035cfd')\" (type ObjectId) at path \"cartId\" because of \"TypeError\"","name":"CastError","path":"cartId","reason":{},"stringValue":"\"new ObjectId('669fb4e488f78c6bc5035cfd')\"","value":"669fb4e488f78c6bc5035cfd","valueType":"ObjectId"}},"message":"facturas validation failed: cartId: Cast to UUID failed for value \"new ObjectId('669fb4e488f78c6bc5035cfd')\" (type ObjectId) at path \"cartId\" because of \"TypeError\"","name":"ValidationError"}}}
+{"level":"error","message":"ete cart feo: {\"id\":\"669fb52a12570837617001bd\",\"userId\":\"66330f8814e6c44df4aa0b15\",\"products\":[],\"status\":\"approved\"}"}
+{"level":"error","message":{"error":{"_message":"facturas validation failed","errors":{"cartId":{"kind":"UUID","message":"Cast to UUID failed for value \"new ObjectId('669fb52a12570837617001bd')\" (type ObjectId) at path \"cartId\" because of \"TypeError\"","name":"CastError","path":"cartId","reason":{},"stringValue":"\"new ObjectId('669fb52a12570837617001bd')\"","value":"669fb52a12570837617001bd","valueType":"ObjectId"}},"message":"facturas validation failed: cartId: Cast to UUID failed for value \"new ObjectId('669fb52a12570837617001bd')\" (type ObjectId) at path \"cartId\" because of \"TypeError\"","name":"ValidationError"}}}
+{"level":"error","message":"ete cart feo: \"669fb7622a0bf1af8c310805\""}
+{"level":"error","message":{"error":{"_message":"facturas validation failed","errors":{"cartId":{"kind":"UUID","message":"Cast to UUID failed for value \"669fb7622a0bf1af8c310805\" (type string) at path \"cartId\" because of \"TypeError\"","name":"CastError","path":"cartId","reason":{},"stringValue":"\"669fb7622a0bf1af8c310805\"","value":"669fb7622a0bf1af8c310805","valueType":"string"}},"message":"facturas validation failed: cartId: Cast to UUID failed for value \"669fb7622a0bf1af8c310805\" (type string) at path \"cartId\" because of \"TypeError\"","name":"ValidationError"}}}
+{"level":"error","message":"ete cart feo: \"669fbc647403477609f7e7b1\""}
+{"level":"error","message":{"error":{}}}
+{"level":"error","message":"ete cart feo: \"669fbca0ec63e59dd726ec60\""}
+{"level":"error","message":{"error":{}}}
+{"level":"error","message":"ete cart feo: \"669fbccb2d396da2eae461fe\""}
+{"level":"error","message":{"error":{}}}
+{"level":"error","message":"ete cart feo: \"669fbce2c4e957ef51489d3d\""}
+{"level":"error","message":{"error":{}}}
+{"level":"error","message":"ete cart feo: \"669fbd58009bf5758d77caad\""}
+{"level":"error","message":{"error":{}}}
+{"level":"error","message":"ete cart feo: \"669fbd920fff22b73e043eca\""}
+{"level":"error","message":{"error":{"_message":"facturas validation failed","errors":{"cartId":{"kind":"UUID","message":"Cast to UUID failed for value \"new ObjectId('669fb7622a0bf1af8c310805')\" (type ObjectId) at path \"cartId\" because of \"TypeError\"","name":"CastError","path":"cartId","reason":{},"stringValue":"\"new ObjectId('669fb7622a0bf1af8c310805')\"","value":"669fb7622a0bf1af8c310805","valueType":"ObjectId"}},"message":"facturas validation failed: cartId: Cast to UUID failed for value \"new ObjectId('669fb7622a0bf1af8c310805')\" (type ObjectId) at path \"cartId\" because of \"TypeError\"","name":"ValidationError"}}}
+{"level":"error","message":"ete cart feo: \"669fbe6205e851c822e6f963\""}
+{"level":"error","message":"ete cart feo: \"669fbec27c8f23cb920fb6af\""}
+{"level":"error","message":"ete cart feo: \"669fbf4b7064bf3c9822d518\""}
+{"level":"error","message":"ete cart feo: \"669fc02f2f18bc1f0d3d6b90\""}
+{"level":"error","message":"ete cart feo: \"669fc0a7832f0b3ed3f9f032\""}
+{"level":"error","message":"ete cart feo: \"669fc17c5d15dce8f4fb74a8\""}
+{"expiredAt":"2024-07-23T15:33:37.000Z","level":"error","message":"jwt expired","name":"TokenExpiredError"}
+{"_message":"productos validation failed","errors":{"description":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"description","properties":{"message":"el campo esta vacio","path":"description","type":"required"}},"price":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"price","properties":{"message":"el campo esta vacio","path":"price","type":"required"}},"stock":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"stock","properties":{"message":"el campo esta vacio","path":"stock","type":"required"}},"title":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"title","properties":{"message":"el campo esta vacio","path":"title","type":"required"}}},"level":"warn","message":"productos validation failed: title: el campo esta vacio, description: el campo esta vacio, price: el campo esta vacio, stock: el campo esta vacio","name":"ValidationError"}
+{"_message":"productos validation failed","errors":{"description":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"description","properties":{"message":"el campo esta vacio","path":"description","type":"required"}},"price":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"price","properties":{"message":"el campo esta vacio","path":"price","type":"required"}},"stock":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"stock","properties":{"message":"el campo esta vacio","path":"stock","type":"required"}},"title":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"title","properties":{"message":"el campo esta vacio","path":"title","type":"required"}}},"level":"warn","message":"productos validation failed: title: el campo esta vacio, description: el campo esta vacio, price: el campo esta vacio, stock: el campo esta vacio","name":"ValidationError"}
+{"_message":"productos validation failed","errors":{"description":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"description","properties":{"message":"el campo esta vacio","path":"description","type":"required"}},"price":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"price","properties":{"message":"el campo esta vacio","path":"price","type":"required"}},"stock":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"stock","properties":{"message":"el campo esta vacio","path":"stock","type":"required"}},"title":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"title","properties":{"message":"el campo esta vacio","path":"title","type":"required"}}},"level":"warn","message":"productos validation failed: title: el campo esta vacio, description: el campo esta vacio, price: el campo esta vacio, stock: el campo esta vacio","name":"ValidationError"}
+{"_message":"productos validation failed","errors":{"description":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"description","properties":{"message":"el campo esta vacio","path":"description","type":"required"}},"price":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"price","properties":{"message":"el campo esta vacio","path":"price","type":"required"}},"stock":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"stock","properties":{"message":"el campo esta vacio","path":"stock","type":"required"}},"title":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"title","properties":{"message":"el campo esta vacio","path":"title","type":"required"}}},"level":"warn","message":"productos validation failed: title: el campo esta vacio, description: el campo esta vacio, price: el campo esta vacio, stock: el campo esta vacio","name":"ValidationError"}
+{"_message":"productos validation failed","errors":{"description":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"description","properties":{"message":"el campo esta vacio","path":"description","type":"required"}},"price":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"price","properties":{"message":"el campo esta vacio","path":"price","type":"required"}},"stock":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"stock","properties":{"message":"el campo esta vacio","path":"stock","type":"required"}},"title":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"title","properties":{"message":"el campo esta vacio","path":"title","type":"required"}}},"level":"warn","message":"productos validation failed: title: el campo esta vacio, description: el campo esta vacio, price: el campo esta vacio, stock: el campo esta vacio","name":"ValidationError"}
+{"_message":"productos validation failed","errors":{"description":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"description","properties":{"message":"el campo esta vacio","path":"description","type":"required"}},"price":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"price","properties":{"message":"el campo esta vacio","path":"price","type":"required"}},"stock":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"stock","properties":{"message":"el campo esta vacio","path":"stock","type":"required"}},"title":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"title","properties":{"message":"el campo esta vacio","path":"title","type":"required"}}},"level":"warn","message":"productos validation failed: title: el campo esta vacio, description: el campo esta vacio, price: el campo esta vacio, stock: el campo esta vacio","name":"ValidationError"}
+{"_message":"productos validation failed","errors":{"description":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"description","properties":{"message":"el campo esta vacio","path":"description","type":"required"}},"price":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"price","properties":{"message":"el campo esta vacio","path":"price","type":"required"}},"stock":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"stock","properties":{"message":"el campo esta vacio","path":"stock","type":"required"}},"title":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"title","properties":{"message":"el campo esta vacio","path":"title","type":"required"}}},"level":"warn","message":"productos validation failed: title: el campo esta vacio, description: el campo esta vacio, price: el campo esta vacio, stock: el campo esta vacio","name":"ValidationError"}
+{"_message":"productos validation failed","errors":{"description":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"description","properties":{"message":"el campo esta vacio","path":"description","type":"required"}},"price":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"price","properties":{"message":"el campo esta vacio","path":"price","type":"required"}},"stock":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"stock","properties":{"message":"el campo esta vacio","path":"stock","type":"required"}},"title":{"kind":"required","message":"el campo esta vacio","name":"ValidatorError","path":"title","properties":{"message":"el campo esta vacio","path":"title","type":"required"}}},"level":"warn","message":"productos validation failed: title: el campo esta vacio, description: el campo esta vacio, price: el campo esta vacio, stock: el campo esta vacio","name":"ValidationError"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn"}
+{"level":"warn","message":{"error":{},"status":"failed"}}
+{"level":"warn","message":{"error":{},"status":"failed"}}
+{"level":"warn","message":{"error":{},"status":"failed"}}
+{"level":"warn","message":{"error":{},"status":"failed"}}
+{"expiredAt":"2024-08-03T02:16:29.000Z","level":"error","message":"jwt expired","name":"TokenExpiredError"}
+{"level":"warn","message":{"error":"no se pudo obtener el código","status":"failed"}}
+{"expiredAt":"2024-08-03T05:04:49.000Z","level":"error","message":"jwt expired","name":"TokenExpiredError"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722654192921","syscall":"unlink"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722654192921","syscall":"access"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"access"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"unlink"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"access"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"unlink"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"access"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"unlink"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"access"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"unlink"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"access"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"unlink"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"access"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"unlink"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"access"}
+{"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"unlink"}
+{"expiredAt":"2024-08-03T06:13:11.000Z","level":"error","message":"jwt expired","name":"TokenExpiredError"}

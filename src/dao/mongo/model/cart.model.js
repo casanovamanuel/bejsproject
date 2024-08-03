@@ -12,7 +12,7 @@ const cartSchema = {
         type: [{
             productId: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'usuarios'
+                ref: 'productos'
             },
             ammount: Number,
             price: Number

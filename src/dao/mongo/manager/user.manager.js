@@ -71,7 +71,7 @@ const userManager = {
 
     userExists: async function (user) {
         try {
-            return await userModel.countDocuments({ email: user.email }) > 0
+            return await userModel.countDocuments({ email: user.email }) > 0 // buscando optimizar
         } catch (error) {
             logUtil.logger.warn(error);
             return false
@@ -85,7 +85,7 @@ const userManager = {
             if (response.status === "failed") return response
             if (encryptionUtil.validate(user.password, response.user.password)) {
                 user = response.user
-                user.last_connection = (new Date()).toLocaleString()
+                user.last_connection = new Date()
                 await userModel.findByIdAndUpdate({ _id: user._id }, { $set: user })
                 const validToken = encryptionUtil.generateToken(user.email)
                 return { status: "success", token: validToken }

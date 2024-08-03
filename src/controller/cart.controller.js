@@ -3,6 +3,7 @@ import DAOService from "../dao/factory.js"
 
 const cartManager = DAOService.services.cartManager
 const productManager = DAOService.services.productManager
+const ticketManager = DAOService.services.ticketManager
 
 const cartController = {
 
@@ -29,7 +30,7 @@ const cartController = {
 
         const response = await cartManager.addProduct(req.user, productId, ammount)
         if (response.status === "failed") return res.status(400).send(response)
-        res.status(201).send(response)
+        return res.status(201).send(response)
 
     },
     removeProduct: async function (req, res) {
@@ -50,13 +51,17 @@ const cartController = {
     checkoutCart: async function (req, res) {
 
         const user = req.user
-        const responseCart = cartManager.getUserCart(user.id)
+        const responseCart = await cartManager.getUserCart(user.id)
         if (responseCart.status === "failed") return res.status(400).send(responseCart)
 
-        const cartId = responseCart.cart.id
-        const response = await cartManager.checkoutCart(cartId)
+        const cart = responseCart.cart
+        const response = await cartManager.checkoutCart(cart)
         if (response.status === "failed") return res.status(400).send(response)
-        return res.status(200).send(response)
+        req.logger.info({ message: "response checkout: ", payload: response })
+
+        const ticketResponse = await ticketManager.createTicket(responseCart.cart)
+        if (ticketResponse.status === "failed") return res.status(400).send(ticketResponse)
+        return res.status(200).send(ticketResponse)
     }
 }
 

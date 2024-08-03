@@ -7,7 +7,7 @@ import { entorno } from "../../config/config.js";
 
 import mongoose from "mongoose"
 
-// mongoose.set('debug', true);
+mongoose.set('debug', true);
 
 mongoose.connect(entorno.mongoUrl)
 

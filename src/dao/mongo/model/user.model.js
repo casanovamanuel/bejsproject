@@ -3,7 +3,11 @@ import mongoose from 'mongoose'
 const userCollection = 'usuarios'
 const documentSchema = {
     name: String,
-    reference: String
+    reference: {
+        type: String,
+        enum: ["comprobanteIdentidad", "comprobanteDomicilio", "comprobanteCuenta"]
+    },
+    url: String
 }
 const userSchema = {
     nombre: {

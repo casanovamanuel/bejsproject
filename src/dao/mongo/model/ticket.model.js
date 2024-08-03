@@ -8,8 +8,12 @@ const ticketSchema = {
         type: Date,
         default: Date.now
     }, //Deberá guardar la fecha y hora exacta en la cual se formalizó la compra(básicamente esun created_at)
-    amount: Number, //total de la compra.
-    cart: { type: mongoose.Schema.Types.UUID, ref: 'carritos' }
+    ammount: {
+        type: Number,
+        default: 0,
+        required: true
+    }, //total de la compra.
+    cartId: { type: mongoose.Schema.Types.ObjectId, ref: 'carritos' }
 }
 
 const ticketModel = mongoose.model(ticketCollection, ticketSchema)

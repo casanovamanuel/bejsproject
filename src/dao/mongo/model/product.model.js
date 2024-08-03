@@ -26,9 +26,11 @@ const productSchema = {
         required: [true, "el campo esta vacio"]
     },
     category: {
-        type: mongoose.Types.ObjectId,
-        ref: "ProductTypes"
-    }
+        type: Number
+    },
+    thumbnail: [{
+        type: String
+    }]
 }
 
 const productModel = mongoose.model(productCollection, productSchema)
