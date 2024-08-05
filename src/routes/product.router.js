@@ -1,5 +1,4 @@
 import { Router } from 'express';
-// import fs from 'fs'
 import multer from 'multer'
 import productController from '../controller/product.controller.js';
 import userController from '../controller/user.controller.js';
@@ -70,12 +69,12 @@ productRouter.get(
     productController.getPhoto
 )
 
-productRouter.delete(
-    '/deleteProduct',
-    userController.userValidation,
-    userController.userAtuthorized("admin"),
-    productController.deleteProduct
-)
+// productRouter.delete(
+//     '/deleteProduct',
+//     userController.userValidation,
+//     userController.userAtuthorized("admin"),
+//     productController.deleteProduct
+// )
 
 productRouter.delete(
     '/deletePhoto',

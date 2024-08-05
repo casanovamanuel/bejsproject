@@ -1,0 +1,34 @@
+
+
+consideraciones
+	un usuario es premium si tiene los roles user y premium - Esto es un problema de como se realiza la autorizacion
+	si un usuario tiene el rol admin, puede realizar cambios en el sistema
+	la subida de archivos se va a realizar en endpoints especiales para cada tipo
+	el sistema de autenticacion va a ser el JWT con validez de 1 hora, y no se usa un método de logout (puede mejorar si tuviera el tiempo)
+	el ticket va relacionado a un carrito, y no al usuario. de esta manera se sabe que productos se compraron.
+	cuando se toma como pago un carrito, se realiza el descuento de los productos del stock del comercio (stock y productos deberían ir separados, si tuviera tiempo los separo)
+	el carrito es cobrable si hay suficientes productos, si no, no se cobra. Decidí cambiar esta estrategia porque me parece mas congruente con la realidad.
+	Cuando un producto se queda sin stock, no lo borro. Eso generaría mas trabajo ademas de incosistencias
+	Voy a tener un usuario admin original del sistema, para poder empezar a usar el sistema. Solución mas plausible tener un usuario original cuando se levanta el servicio por primera vez que permita crear los demas administradores del sistema.
+	No estoy guardando los documentos en un array porque al ser solo 3 tipos es mas cómodo y mas rápido hacerlo en 3 propiedades del modelo. Si se quieren agregar tipos de documentos en un futuro requerirá otra charla.
+
+preguntas
+	el sistema de autenticación via JWT que tengo ahora esta bien?
+		cuando se loguea le envio un token y con eso puede hacer lo que le corresponda al perfil
+	levantar 2 controllers en un router esta mal?
+		es para levantar el sistema de autenticación y autorización
+		se que puedo mejorar esto y lo voy a hacer si me da el tiempo
+			se me ocurre que cuando levanto el service lo agrego a una estructura global (la veo dificil)
+	chat
+		como tendría que agregarlo? que se espera que se pueda hacer? porque en una API eso es medio complicado. Digo no veo como es eso plausible.
+
+No llegué
+	swagger
+		No pude levantar nada, escribo la especificación pero no logré hacerlo andar
+	mejorar el sistema de permisos
+	mejorar el sistema de autenticacion y autorizacion
+	agregar los DTO necesarios
+		El mas interesante era el de usuario para evitar el envío de datos sensibles
+	etc ....
+
+

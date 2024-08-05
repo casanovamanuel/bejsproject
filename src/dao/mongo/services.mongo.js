@@ -32,6 +32,11 @@ const userValidation = async (req, res, next) => {
         }
 
         const user = response.user
+        if (user.enabled === false) {
+            res.status(401).send({ status: "failed", messages: ["Usuario deshabilitado"] })
+            return false
+        }
+
         req.user = { id: user._id, email: user.email }
         return next()
     } catch (error) {

@@ -145,3 +145,13 @@
 {"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"access"}
 {"code":"ENOENT","errno":-2,"level":"error","path":"./img/product/p_6624975748c5603f3a2684b1_1722653704677","syscall":"unlink"}
 {"expiredAt":"2024-08-03T06:13:11.000Z","level":"error","message":"jwt expired","name":"TokenExpiredError"}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError"}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError"}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError"}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError"}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError"}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError"}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError"}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError"}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError"}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError"}

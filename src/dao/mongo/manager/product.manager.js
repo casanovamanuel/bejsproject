@@ -86,17 +86,17 @@ const productManager = {
         }
     },
 
-    deleteProduct: async function (productId) {
-        try {
-            const product = await productModel.findById(productId).exec()
-            if (!product) return { status: "failed", messages: ["el producto no existe"] }
-            await productModel.findByIdAndDelete({ _id: productId })
-            return { status: "success", messages: ["se elimino correctamente el producto"], photos: product.thumbnail }
-        } catch (error) {
-            logUtil.logger.warn({ status: "failed", error: error });
-            return { status: "failed", messages: ["no se pudo eliminar el producto"] }
-        }
-    },
+    // deleteProduct: async function (productId) {
+    //     try {
+    //         const product = await productModel.findById(productId).exec()
+    //         if (!product) return { status: "failed", messages: ["el producto no existe"] }
+    //         await productModel.findByIdAndDelete({ _id: productId })
+    //         return { status: "success", messages: ["se elimino correctamente el producto"], photos: product.thumbnail }
+    //     } catch (error) {
+    //         logUtil.logger.warn({ status: "failed", error: error });
+    //         return { status: "failed", messages: ["no se pudo eliminar el producto"] }
+    //     }
+    // },
 
     deletePhoto: async function (productId, filename) {
         try {

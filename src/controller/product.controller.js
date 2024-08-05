@@ -67,22 +67,22 @@ const productController = {
 
 
 
-    deleteProduct: async function (req, res) {
-        if (!req.body.productId) return res.status(400).send({ status: "failed", messages: ["faltan datos"] })
-        const productId = req.body.productId
-        const response = await productManager.deleteProduct(productId)
-        if (response.status === "failed") return res.status(400).send(response)
-        const photos = response.photos  // esto es un abuso, lo voy a solucionar
-        let allPhotosFound = true
-        photos.forEach(element => {
-            if (!unlinkPhoto(element, req.logger)) allPhotosFound = false
-        });
-        delete response.photos
-        if (!allPhotosFound) {
-            req.logger.warn("no se pudieron borrar todas las fotos: ", photos)
-        }
-        res.status(200).send(response)
-    },
+    // deleteProduct: async function (req, res) {
+    //     if (!req.body.productId) return res.status(400).send({ status: "failed", messages: ["faltan datos"] })
+    //     const productId = req.body.productId
+    //     const response = await productManager.deleteProduct(productId)
+    //     if (response.status === "failed") return res.status(400).send(response)
+    //     const photos = response.photos  // esto es un abuso, lo voy a solucionar
+    //     let allPhotosFound = true
+    //     photos.forEach(element => {
+    //         if (!unlinkPhoto(element, req.logger)) allPhotosFound = false
+    //     });
+    //     delete response.photos
+    //     if (!allPhotosFound) {
+    //         req.logger.warn("no se pudieron borrar todas las fotos: ", photos)
+    //     }
+    //     res.status(200).send(response)
+    // },
 
     deletePhoto: async function (req, res) {
         if (!req.body.photoId) return res.status(400).send({ status: "failed", messages: ["faltan datos"] })

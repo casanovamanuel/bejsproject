@@ -1,20 +1,25 @@
 import mongoose from 'mongoose'
 
 const userCollection = 'usuarios'
-const documentSchema = {
-    name: String,
-    reference: {
-        type: String,
-        enum: ["comprobanteIdentidad", "comprobanteDomicilio", "comprobanteCuenta"]
-    },
-    url: String
-}
+// const documentSchema = {
+//     name: String,
+//     reference: {
+//         type: String,
+//         enum: ["comprobanteIdentidad", "comprobanteDomicilio", "comprobanteCuenta"]
+//     },
+//     url: String
+// }
+// lo iba a hacer mucho mas complicado, no vale la pena XD
+
+
 const userSchema = {
     nombre: {
-        type: String
+        type: String,
+        required: [true, "el campo esta vacio"]
     },
     apellido: {
-        type: String
+        type: String,
+        required: [true, "el campo esta vacio"]
     },
     email: {
         type: String,
@@ -27,16 +32,31 @@ const userSchema = {
     roles: [{
         type: String,
         enum: ["user", "admin", "premium"],
-        defaults: "user"
+        default: "user"
     }],
     last_connection: {
         type: Date
     },
-    documents: [{
-        type: documentSchema
-    }]
-
-
+    profileAvatar: {
+        type: String,
+        default: ""
+    },
+    identityProof: {
+        type: String,
+        default: ""
+    },
+    addressProof: {
+        type: String,
+        default: ""
+    },
+    accountProof: {
+        type: String,
+        default: ""
+    },
+    enabled: {
+        type: Boolean,
+        default: false
+    }
 }
 
 

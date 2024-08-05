@@ -24,6 +24,17 @@ const checkUser = (user) => {
 }
 
 const userManager = {
+    getUserById: async function (id) {
+        try {
+            const user = await userModel.findById(id).lean()
+            if (!user) return { status: "failed", messages: ["no existe el usuario"] }
+            return { status: "success", user: user }
+        } catch (error) {
+            logUtil.logger.warn(error);
+            return { status: "failed", messages: ["no existe el usuario"] }
+        }
+    },
+
     getUserByEmail: async function (username) {
         try {
             const user = await userModel.findOne({ email: username }).lean()
@@ -95,6 +106,78 @@ const userManager = {
         } catch (error) {
             logUtil.logger.warn("explote aca", error);
             return { status: "failed", messages: ["credenciales invalidas"] }
+        }
+    },
+
+
+    deleteUser: async function (id) {
+        try {
+            const deletedUser = await userModel.findByIdAndDelete({ _id: id })
+            return { status: "success", user: deletedUser }
+        } catch (error) {
+            logUtil.logger.warn(error);
+            return { status: "failed", messages: ["no se pudo eliminar el usuario"] }
+        }
+    },
+
+    setAvatar: async function (id, avatar) {
+        try {
+            const updatedUser = await userModel.findByIdAndUpdate({ _id: id }, { $set: { profileAvatar: avatar } }, { new: true })
+            return { status: "success", user: updatedUser }
+        } catch (error) {
+            logUtil.logger.warn(error);
+            return { status: "failed", messages: ["no se pudo cargar la imagen"] }
+        }
+    },
+
+    setIdentityProof: async function (id, identityProof) {
+        try {
+            const updatedUser = await userModel.findByIdAndUpdate({ _id: id }, { $set: { identityProof: identityProof } }, { new: true })
+            return { status: "success", user: updatedUser }
+        } catch (error) {
+            logUtil.logger.warn(error);
+            return { status: "failed", messages: ["no se pudo cargar el archivo"] }
+        }
+    },
+
+    setAddressProof: async function (id, addressProof) {
+        try {
+            const updatedUser = await userModel.findByIdAndUpdate({ _id: id }, { $set: { addressProof: addressProof } }, { new: true })
+            return { status: "success", user: updatedUser }
+        } catch (error) {
+            logUtil.logger.warn(error);
+            return { status: "failed", messages: ["no se pudo cargar el archivo"] }
+        }
+    },
+
+    setAccountProof: async function (id, accountProof) {
+        try {
+            const updatedUser = await userModel.findByIdAndUpdate({ _id: id }, { $set: { accountProof: accountProof } }, { new: true })
+            return { status: "success", user: updatedUser }
+        } catch (error) {
+            logUtil.logger.warn(error);
+            return { status: "failed", messages: ["no se pudo cargar el archivo"] }
+        }
+    },
+
+    deleteInactiveUsers: async function () {
+        try {
+            const twoDaysAgo = new Date(Date.now() - (2 * 24 * 60 * 60 * 1000))
+            const disabledUsers = await userModel.updateMany({ last_connection: { $lt: twoDaysAgo }, status: "active" }, { $set: { status: "disabled" } })
+            return { status: "success", disabledUsers: disabledUsers.modifiedCount }
+        } catch (error) {
+            logUtil.logger.warn(error);
+            return { status: "failed", messages: ["no se pudieron desactivar los usuarios"] }
+        }
+    },
+
+    getUsers: async function () {
+        try {
+            const users = await userModel.find({ enbled: true }, { nombre: 1, apellido: 1, email: 1, roles: 1 })
+            return { status: "success", users: users }
+        } catch (error) {
+            logUtil.logger.warn(error);
+            return { status: "failed", messages: ["no se pudieron obtener los usuarios"] }
         }
     }
 

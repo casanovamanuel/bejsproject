@@ -15,15 +15,26 @@ import handlebars from 'express-handlebars'
 // import { Server } from 'socket.io'
 import cookieParser from 'cookie-parser';
 import { entorno } from "./config/config.js";
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUiExpress from 'swagger-ui-express'
 
 
-
-
-// mongoose config
 
 
 // configurando express 
 const expressService = express();
+const swaggerOptions = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Ecommerce API',
+            version: '1.0.0',
+        },
+    },
+    apis: ['/home/panda/Codigo/bejsproject/docs/User/User.yml'],
+}
+const swaggerDocs = swaggerJSDoc(swaggerOptions)
+expressService.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(swaggerDocs))
 
 expressService.engine('handlebars', handlebars.engine())
 expressService.set('views', baseDirName + '/views')
@@ -42,5 +53,5 @@ expressService.use('/api/cart', cartRouter)
 expressService.use('/api/user', userRouter)
 expressService.use('/', viewsRouter) // default - puede que sea necesario hacer desaparecer
 
-
+logUtil.logger.info('./docs/**/*.yml')
 const server = expressService.listen(entorno.port, () => { logUtil.logger.info("servidor funcionando en: " + entorno.port); });
